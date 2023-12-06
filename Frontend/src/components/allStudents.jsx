@@ -10,27 +10,29 @@ const AllStudents = () => {
   const remove = (id) => {
     try {
       const response = axios.delete(
-        `http://localhost:3582/delete/${id}`
+        `https://mern-web-mjg1.onrender.com/delete/${id}`
       );
       console.log(response);
     } catch (error) {
       console.error(error);
     }
   };
+  const fetchData = async () => {
+    try {
+      // Make a GET request to your API endpoint
+      const response = await axios.get(
+        "https://mern-web-mjg1.onrender.com/students"
+      );
+
+      // Assuming the data is an array, update the state with the response data
+      setStudents(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
     // Function to fetch data using Axios
-    const fetchData = async () => {
-      try {
-        // Make a GET request to your API endpoint
-        const response = await axios.get("http://localhost:3582/students");
-
-        // Assuming the data is an array, update the state with the response data
-        setStudents(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
 
     // Call the fetch function
     fetchData();
@@ -83,7 +85,7 @@ const AllStudents = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {students.map((value) => (
-                    <tr className="divide-x divide-gray-200">
+                    <tr className="divide-x divide-gray-200" key={value._id}>
                       <td className="whitespace-nowrap px-4 py-4">
                         <div className="flex items-center">
                           <div className="ml-4">

@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 const UpdateStudent = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const updatedData = {};
+  let updatedData = {};
 
   const submit = async (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ const UpdateStudent = () => {
     const studentClass = e.target.class.value;
     const studentRoll = e.target.roll.value;
 
-    const updatedData = {
+    updatedData = {
       studentName: studentName,
       class: studentClass,
       roll: studentRoll,
@@ -23,7 +23,7 @@ const UpdateStudent = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3582/update/${id}`,
+        `https://mern-web-mjg1.onrender.com/update/${id}`,
         updatedData
       );
       console.log("Response:", response.data);
@@ -33,7 +33,7 @@ const UpdateStudent = () => {
       console.error("Error:", error);
     }
   };
-  const [student, setStudent] = useState([]);
+  const [student, setStudent] = useState({});
 
   useEffect(() => {
     // Function to fetch data using Axios
@@ -41,7 +41,7 @@ const UpdateStudent = () => {
       try {
         // Make a GET request to your API endpoint
         const response = await axios.get(
-          `http://localhost:3582/students/${id}`
+          `https://mern-web-mjg1.onrender.com/students/${id}`
         );
 
         // Assuming the data is an array, update the state with the response data

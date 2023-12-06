@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddStudent = () => {
-  const [userData, setUserData] = useState({});
+  let userData = {};
   const navigate = useNavigate();
 
   const submit = async (e) => {
@@ -12,20 +12,18 @@ const AddStudent = () => {
     const studentClass = e.target.class.value;
     const studentRoll = e.target.roll.value;
 
-    setUserData({
-      ...userData,
+    userData = {
       studentName: studentName,
       class: studentClass,
       roll: studentRoll,
-    });
+    };
 
     try {
-      // const response = await axios.post(
-      //   "http://localhost:3582/addStudent",
-      //   userData
-      // );
-      // console.log("Response:", response.data);
-      console.log(userData)
+      const response = await axios.post(
+        "https://mern-web-mjg1.onrender.com/addStudent",
+        userData
+      );
+      console.log("Response:", response.data);
 
       navigate("/");
     } catch (error) {
