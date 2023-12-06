@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddStudent = () => {
-  const userData = {};
+  const [userData, setUserData] = useState({});
   const navigate = useNavigate();
 
   const submit = async (e) => {
@@ -12,18 +12,20 @@ const AddStudent = () => {
     const studentClass = e.target.class.value;
     const studentRoll = e.target.roll.value;
 
-    const userData = {
+    setUserData({
+      ...userData,
       studentName: studentName,
       class: studentClass,
       roll: studentRoll,
-    };
+    });
 
     try {
-      const response = await axios.post(
-        "http://localhost:3582/addStudent",
-        userData
-      );
-      console.log("Response:", response.data);
+      // const response = await axios.post(
+      //   "http://localhost:3582/addStudent",
+      //   userData
+      // );
+      // console.log("Response:", response.data);
+      console.log(userData)
 
       navigate("/");
     } catch (error) {

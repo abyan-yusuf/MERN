@@ -78,7 +78,7 @@ const UpdateStudent = () => {
                       type="text"
                       name="name"
                       id="name"
-                      placeholder={student?.studentName}
+                      defaultValue={student?.studentName}
                       required
                     />
                   </div>
@@ -96,7 +96,7 @@ const UpdateStudent = () => {
                       type="number"
                       name="class"
                       id="class"
-                      placeholder={student?.class}
+                      defaultValue={student?.class}
                       required
                     />
                   </div>
@@ -116,7 +116,7 @@ const UpdateStudent = () => {
                       type="number"
                       name="roll"
                       id="roll"
-                      placeholder={student?.roll}
+                      defaultValue={student?.roll}
                       required
                     />
                   </div>
